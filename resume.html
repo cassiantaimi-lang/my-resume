@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张嘉源 - 个人简历</title>
+    <!-- 引入 FontAwesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* 深色侧边栏 */
+            --accent-color: #1abc9c; /* 强调色：青色 */
+            --text-color: #333;
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* 左侧侧边栏 */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 30px;
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+            background-color: #ddd; /* 占位色 */
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info ul {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            width: 25px;
+            color: var(--accent-color);
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .education-item {
+            margin-bottom: 20px;
+        }
+        
+        .education-item h4 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* 右侧主内容区 */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .header .job-title {
+            font-size: 18px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        /* 项目经历样式 */
+        .project-item {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #eee;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .project-tech {
+            font-size: 12px;
+            color: #666;
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .project-date {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+
+        .project-desc ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .project-desc li {
+            margin-bottom: 5px;
+        }
+
+        /* 自我评价 */
+        .summary-text {
+            text-align: justify;
+            color: #555;
+        }
+
+        /* 打印样式优化 */
+        @media print {
+            body { background: white; -webkit-print-color-adjust: exact; }
+            .container { box-shadow: none; margin: 0; width: 100%; max-width: 100%; }
+            .sidebar { -webkit-print-color-adjust: exact; }
+            a { text-decoration: none; color: inherit; }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; margin: 0; }
+            .sidebar { width: 100%; padding: 30px 20px; text-align: center; }
+            .contact-info li { justify-content: center; }
+            .sidebar h2 { text-align: center; }
+            .main-content { padding: 30px 20px; }
+            .project-header { flex-direction: column; align-items: flex-start; }
+            .project-date { margin-top: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 左侧栏：个人信息、技能、教育 -->
+    <aside class="sidebar">
+        <!-- 头像占位符，如有照片可替换 src -->
+        <img src="your-photo.jpg" alt="张嘉源" class="profile-img" onerror="this.style.display='none'">
+        
+        <!-- 如果没有照片，显示名字 -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2 style="margin: 0; border: none; font-size: 24px;">张嘉源</h2>
+            <p style="opacity: 0.8; font-size: 14px;">21岁 | 男</p>
+        </div>
+
+        <div class="contact-info">
+            <h2><i class="fas fa-address-card"></i> 联系方式</h2>
+            <ul>
+                <li><i class="fas fa-phone"></i> 18999147410</li>
+                <li><i class="fas fa-envelope"></i> 2905658053@qq.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> 新疆乌鲁木齐</li>
+            </ul>
+        </div>
+
+        <div class="education">
+            <h2><i class="fas fa-graduation-cap"></i> 教育背景</h2>
+            <div class="education-item">
+                <h4>大连东软信息学院</h4>
+                <p>计算机科学与技术 | 本科</p>
+                <p>2023.09 - 2027.06</p>
+                <p style="margin-top:5px; color: var(--accent-color);">GPA: 3.6/4.0 (前15%)</p>
+            </div>
+        </div>
+
+        <div class="skills">
+            <h2><i class="fas fa-code"></i> 专业技能</h2>
+            
+            <div style="margin-bottom: 15px;">
+                <strong style="display:block; margin-bottom:5px; color:var(--accent-color);">前端 & 可视化</strong>
+                <span class="skill-tag">Vue3 / React</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">ECharts / D3.js</span>
+                <span class="skill-tag">Three.js / G6</span>
+                <span class="skill-tag">Uniapp / 小程序</span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <strong style="display:block; margin-bottom:5px; color:var(--accent-color);">后端 & 数据库</strong>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">Koa2 / Node.js</span>
+                <span class="skill-tag">MySQL / Redis</span>
+                <span class="skill-tag">MyBatis-Plus</span>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <strong style="display:block; margin-bottom:5px; color:var(--accent-color);">AI & 鸿蒙</strong>
+                <span class="skill-tag">LangChain / RAG</span>
+                <span class="skill-tag">OpenHarmony (ArkTS)</span>
+                <span class="skill-tag">AI工具流 (CodeBuddy)</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 右侧主内容：求职意向、项目、实践 -->
+    <main class="main-content">
+        <header class="header">
+            <h1>张嘉源</h1>
+            <div class="job-title">求职意向：全栈开发工程师 / AI应用开发工程师 / 前端开发工程师</div>
+        </header>
+
+        <section class="section">
+            <h3 class="section-title"><i class="fas fa-user"></i> 自我评价</h3>
+            <p class="summary-text">
+                大连东软信息学院科班出身，具备扎实的全栈开发能力。前端擅长 Vue/React 及复杂的数据可视化（ECharts/Three.js）；AI 方向能基于 LangChain 快速搭建知识库应用。对新技术有极强热情，善于利用 AI 工具提升工程效率，致力于成为懂业务、能落地的全栈+AI 工程师。
+            </p>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title"><i class="fas fa-laptop-code"></i> 项目经历</h3>
+
+            <!-- 项目 1 -->
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">智能知识库问答助手 (AI + 全栈)</span>
+                    <span class="project-date">2024.09 - 至今</span>
+                </div>
+                <div class="project-tech">LangChain + Koa2 + Vue3 + G6 + Three.js</div>
+                <div class="project-desc">
+                    <ul>
+                        <li><strong>RAG 架构：</strong>基于 LangChain 搭建知识库，实现文档切片、向量检索及大模型问答集成。</li>
+                        <li><strong>可视化创新：</strong>使用 <strong>G6</strong> 绘制知识图谱，结合 <strong>Three.js</strong> 构建 3D 节点关系图，直观展示文档关联。</li>
+                        <li><strong>全栈开发：</strong>后端 Koa2 提供 API，Redis 缓存高频问答；前端 Vue3 实现流畅的对话界面。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 项目 2 -->
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">智慧校园数据大屏系统</span>
+                    <span class="project-date">2024.07 - 2024.10</span>
+                </div>
+                <div class="project-tech">Spring Boot + MySQL + ECharts + DataV + D3.js</div>
+                <div class="project-desc">
+                    <ul>
+                        <li><strong>数据可视化：</strong>集成多种图表库，ECharts 展示实时人流量，DataV 构建科技感边框，D3.js 绘制自定义关系网络。</li>
+                        <li><strong>后端架构：</strong>Spring Boot + MyBatis-Plus 开发数据接口，Redis 缓存热点数据提升加载速度。</li>
+                        <li><strong>数据库设计：</strong>使用 MySQL Workbench 进行规范化建模，模拟设备数据源进行前期开发。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 项目 3 -->
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">京东电商网站仿制 + 小程序版</span>
+                    <span class="project-date">2024.02 - 2024.04</span>
+                </div>
+                <div class="project-tech">Vue3 + TypeScript + Uniapp + Canvas/SVG</div>
+                <div class="project-desc">
+                    <ul>
+                        <li><strong>跨端开发：</strong>使用 Uniapp 实现一套代码编译为微信小程序和 H5，核心代码复用率高。</li>
+                        <li><strong>图形绘制：</strong>利用 Canvas 绘制商品热度雷达图，SVG 实现优惠券进度条动画效果。</li>
+                        <li><strong>工程化：</strong>使用 json-server 搭建 Mock API，独立完成前后端数据模拟与联调。</li>
+                    </ul>
+                </div>
+            </div>
+
+             <!-- 项目 4 -->
+             <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">OpenHarmony 智能备忘录</span>
+                    <span class="project-date">2024.03 - 2024.06</span>
+                </div>
+                <div class="project-tech">OpenHarmony + ArkTS + Canvas</div>
+                <div class="project-desc">
+                    <ul>
+                        <li><strong>鸿蒙原生：</strong>采用 ArkTS 声明式开发范式，实现备忘录增删改查及分类标签功能。</li>
+                        <li><strong>交互创新：</strong>集成 Canvas 组件实现手写涂鸦功能，支持笔记配图绘制。</li>
+                        <li><strong>成果：</strong>获得课程优秀设计奖，展示了在鸿蒙生态下的开发能力。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3 class="section-title"><i class="fas fa-trophy"></i> 荣誉与实践</h3>
+            <ul style="list-style-type: disc; padding-left: 20px;">
+                <li><strong>奖学金：</strong>校级二等奖学金（2022-2023）、三等奖学金（2023-2024）。</li>
+                <li><strong>开源贡献：</strong>GitHub 维护“AI-tools”仓库，收录 LangChain 代码片段及 MCP 示例。</li>
+                <li><strong>校园实践：</strong>担任学习委员，组织编程小组将班级通过率提升至 98%；SOVO 创业中心成员。</li>
+            </ul>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>
